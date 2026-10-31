@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HoloApp iOS</title>
+    
+    <!-- Configuration PWA pour iPhone -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HoloApp">
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js chargé depuis un CDN (nécessaire une 1ère fois en ligne, puis mis en cache) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <div class="ios-ui">
+        <div class="header-title">HoloPortail & Animaux</div>
+        <div class="status-badge" id="statusText">En attente d'activation du gyroscope</div>
+        
+        <button class="primary" id="permBtn">Autoriser les capteurs iOS</button>
+
+        <div class="btn-group">
+            <button onclick="playFrequency(16000, this)">🐶 Chien (16 kHz)</button>
+            <button onclick="playFrequency(19000, this)">🐱 Chat (19 kHz)</button>
+        </div>
+
+        <div class="slider-container">
+            <label><span>Fréquence personnalisée</span><span id="freqValue">16000 Hz</span></label>
+            <input type="range" id="freqSlider" min="15000" max="22000" step="100" value="16000">
+        </div>
+
+        <button class="stop" onclick="stopSound()">Couper le son</button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker actif ! App prête pour le hors-ligne.', reg))
+                .catch(err => console.error('Erreur Service Worker :', err));
+        });
+    }
+</script>
+</body>
+</html>

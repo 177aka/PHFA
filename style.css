@@ -1,0 +1,158 @@
+:root {
+  --bg-color: #000000;
+  --card-bg: rgba(28, 28, 30, 0.75);
+  --border-color: rgba(255, 255, 255, 0.15);
+  --accent: #0a84ff;
+  --accent-active: #005ec4;
+  --text-main: #ffffff;
+  --text-secondary: #ebebf599;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* Interface style iOS Dynamic Island / Widgets */
+.ios-ui {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 92%;
+  max-width: 420px;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.header-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+
+.status-badge {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border: none;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:active {
+  transform: scale(0.96);
+  opacity: 0.8;
+}
+
+button.primary {
+  background: var(--accent);
+  color: white;
+  grid-column: span 2;
+  font-weight: 600;
+}
+
+button.active-sound {
+  background: #30d158;
+  color: white;
+}
+
+button.stop {
+  background: #ff453a;
+  grid-column: span 2;
+}
+
+/* Slider iOS */
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.slider-container label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
